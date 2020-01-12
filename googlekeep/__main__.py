@@ -3,7 +3,7 @@ from datetime import datetime
 from time import sleep
 import serial
 import sys
-ser = serial.Serial("COM4")
+ser = serial.Serial("COM7")
 import itertools
 DEADLINE = 2 * 3600
 currentFun = True
