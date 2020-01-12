@@ -3,7 +3,7 @@ from datetime import datetime
 from time import sleep
 import serial
 import sys
-ser = serial.Serial()
+ser = serial.Serial("COM4")
 import itertools
 DEADLINE = 2 * 3600
 currentFun = True
@@ -12,7 +12,7 @@ spinner = itertools.cycle(['-', '/', '|', '\\'])
 
 def main():
     global currentFun
-    # ser.open()
+    print(f'Connected to {ser} port')
     client = RemindersClient()
     while True:
         reminders = client.list_reminders(50)
@@ -43,12 +43,11 @@ def main():
 
 def fun():
     print('*', end='')
-    # ser.write(b'o')
+    ser.write(b'o')
 
 def nofun():
     print('x', end='')
-    pass
-    # ser.write(b'O')
+    ser.write(b'O')
 
 if __name__ == "__main__":
     main();
