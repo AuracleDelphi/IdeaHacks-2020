@@ -2,9 +2,13 @@ from reminders_client import RemindersClient
 from datetime import datetime
 from time import sleep
 import serial
+import sys
 ser = serial.Serial()
+import itertools
 DEADLINE = 2 * 3600
 currentFun = True
+
+spinner = itertools.cycle(['-', '/', '|', '\\'])
 
 def main():
     global currentFun
@@ -31,14 +35,19 @@ def main():
         if not faultFound:
             currentFun = True
             fun()
-        sleep(5)
+        for _ in range(50):
+            sys.stdout.write('\r')
+            sys.stdout.write(next(spinner))
+            sys.stdout.flush()
+            sleep(0.1)
 
 def fun():
     print('*', end='')
     # ser.write(b'o')
 
 def nofun():
-    print('no fun')
+    print('x', end='')
+    pass
     # ser.write(b'O')
 
 if __name__ == "__main__":
