@@ -1,0 +1,6 @@
+in __main__.py:
+uncomment everything with 'ser.write'
+
+in the line
+ser = serial.Serial(),
+put the port of the device within the parantheses (something like /dev/usbcu....)
